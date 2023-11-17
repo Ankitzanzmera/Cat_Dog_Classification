@@ -2,5 +2,5 @@ flask
 flask-cors
 numpy
 pillow
-tensorflow=2.11.0
+tensorflow==2.11.0
 # -e .

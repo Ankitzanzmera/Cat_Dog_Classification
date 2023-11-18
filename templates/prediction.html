@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Classification</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+		body{background-color: #eff2f9;}
+		.iupload h3{color: #1b2d6b;font-size: 30px;font-weight: 700;}
+		.img-part{height:300px;width:300px;margin:0px auto;}
+		.image-part{height:300px;width:300px;border:1px solid #1b2d6b;}
+		.image-part img{position:absolute;height: 300px;width:300px;display:none;padding:5px;}
+		.image-part #video{display:block;height: 300px;width:300px;padding:5px;}
+		.res-part{border:1px solid #dedede;margin-left:20px;height: 310px;width:100%;padding:5px;margin:0px auto;overflow:auto;} */
+		.res-part2{border:1px solid #dedede;height: 310px;width:100%;padding:5px;margin:0px auto;}
+		.btn-part{width:325px;}
+	</style>
+</head>
+<body>
+    <div class="main container">
+		<section class="iupload">
+			<h3 class="text-center py-4">Object Classification</h3>
+			<div class="row">
+				<div class="img-part col-md-6">
+					<div >
+						<img src="https://img.freepik.com/free-vector/group-young-people-posing-photo_52683-18824.jpg?size=338&ext=jpg" class="image-part" id="photo" alt="">
+					</div>
+					<div class="btn-part">
+						<form id="upload-data pt-3" class="" action="{{url_for('predictionImage')}}" method = "POST" enctype="multipart/form-data">
+							<div class="input-group mt-3 row border" >
+								<input name="upload" id="photoinput" class="ml-3" type="file" accept="image/*" /><br>
+								<input type="submit" value="Predict" class="border btn btn-success btn-block mr-2 ml-3 mt-2">
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-6 col-xs-12 right-part">
+					<h5 class="mb-2"><center>Prediction Results</center></h5>
+					<div class="row">
+						<div class="res-part  col-md-5 col-xs-12"><div class="result">{{final_result}}</div></div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script>
+		function display(input){
+			if (input.files && input.files[0]){
+				var reader = new FileReader();
+				
+				reader.onload = function(event){
+					$('#photo').attr('src',event.target.result);
+				}
+				reader.readAsDataURL(input.files[0])
+			}
+		}
+		$('#photoinput').change(function(){
+			display(this)
+		});
+	</script>
+</body>
+</html>

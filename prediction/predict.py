@@ -16,7 +16,7 @@ class DogCat:
             img_data = img.resize((224, 224))   
             img_arr = img_to_array(img_data)
             img_arr = np.expand_dims(img_arr,axis=0)
-            model_path = os.path.join(os.getcwd(),'model','model_inception_net.h5')
+            model_path = os.path.join(os.getcwd(),'model','vgg19.h5')
 
             model = load_model(model_path)
 

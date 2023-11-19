@@ -11,7 +11,6 @@ from tensorflow.keras.preprocessing.image import load_img
 
 app = Flask(__name__)
 
-
 @app.route("/",methods = ['GET'])
 def home():
     return render_template('home.html')
@@ -26,7 +25,6 @@ def predictionImage():
             uploaded_file = request.files['upload']
             
             img = Image.open(io.BytesIO(uploaded_file.read()))
-            # img = load_img(uploaded_file,target_size = (224,224))
 
             class_obj = DogCat()
             result = class_obj.predictionDogCat(img)
